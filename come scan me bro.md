@@ -1,4 +1,4 @@
-Sure, here are the same steps with placeholders replaced by Bash variables for improved readability:
+Certainly, here's a complete set of steps to create an AWS Lambda function and API Gateway endpoint for performing a port scan, along with the Python Lambda function code using Boto3:
 
 **Step 1: Create an AWS Lambda Function**
 
@@ -14,6 +14,39 @@ aws lambda create-function \
   --role $role_arn \
   --handler $handler \
   --zip-file fileb://$lambda_code_path
+```
+
+Python Lambda function using Boto3:
+
+```python
+import json
+import socket
+
+def lambda_handler(event, context):
+    # Get the requestor's IP address from the API Gateway event
+    requestor_ip = event['requestContext']['identity']['sourceIp']
+
+    # Define the range of ports to scan
+    ports_to scan = [80, 443, 22, 3389]
+
+    open_ports = []
+    for port in ports_to_scan:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
+        result = sock.connect_ex((requestor_ip, port))
+        sock.close()
+        if result == 0:
+            open_ports.append(port)
+
+    response = {
+        'statusCode': 200,
+        'body': json.dumps({
+            'requestor_ip': requestor_ip,
+            'open_ports': open_ports
+        })
+    }
+
+    return response
 ```
 
 **Step 2: Create an API Gateway**
