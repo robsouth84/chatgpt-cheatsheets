@@ -1,1 +1,74 @@
+Certainly, here's a comprehensive list of enumeration techniques and example commands for tools mentioned:
 
+**1. Port Scanning (Nmap):**
+   - Command: `nmap -p- <target>`
+   - Explanation: Scans all 65,535 ports on the target.
+
+**2. Service Version Detection (Nmap):**
+   - Command: `nmap -sV <target>`
+   - Explanation: Identifies service versions on open ports.
+
+**3. Banner Grabbing (Netcat):**
+   - Command: `nc -v <target> <port>`
+   - Explanation: Manually grab banners from services using Netcat.
+
+**4. Directory Enumeration (Gobuster):**
+   - Command: `gobuster dir -u http://<target> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`
+   - Explanation: Scans for directories on a web server.
+
+**5. Vulnerability Scanning (Nessus):**
+   - Command: Launch Nessus and configure scans.
+   - Explanation: Nessus is a GUI-based vulnerability scanner for identifying vulnerabilities in target systems.
+
+**6. Brute Force Attacks (Hydra):**
+   - Command: `hydra -l <username> -P <password list> <target> <service>`
+   - Explanation: Performs brute force attacks on various services.
+
+**7. Web Application Enumeration (Nikto):**
+   - Command: `nikto -h http://<target>`
+   - Explanation: Scans web applications for vulnerabilities and information.
+
+**8. DNS Enumeration (nslookup):**
+   - Command: `nslookup -type=any <target>`
+   - Explanation: Retrieves DNS information about the target.
+
+**9. SNMP Enumeration (SNMPWalk):**
+   - Command: `snmpwalk -v2c -c public <target>`
+   - Explanation: Enumerates SNMP information from a target.
+
+**10. SMTP Enumeration (nmap):**
+   - Command: `nmap -p25 <target>`
+   - Explanation: Scans for open SMTP servers.
+
+**11. SMB Enumeration (enum4linux):**
+   - Command: `enum4linux <target>`
+   - Explanation: Enumerates information from SMB shares on Windows systems.
+
+**12. LDAP Enumeration (ldapsearch):**
+   - Command: `ldapsearch -x -h <target> -b <baseDN>`
+   - Explanation: Queries LDAP directory services for information.
+
+**13. NetBIOS Enumeration (enum4linux or nbtscan):**
+   - Command: `enum4linux -a <target>`
+   - Explanation: Enumerates information from NetBIOS services.
+
+**14. SSH Enumeration (ssh-keyscan):**
+   - Command: `ssh-keyscan <target>`
+   - Explanation: Retrieves SSH host keys.
+
+**15. Database Enumeration (SQLMap):**
+   - Command: `sqlmap -u http://<target>/login.php --data="username=test&password=test" --dbs`
+   - Explanation: Scans for SQL injection vulnerabilities in web applications.
+
+**16. Wireless Network Enumeration (Airodump-ng):**
+   - Command: `airodump-ng wlan0`
+   - Explanation: Lists available wireless networks.
+
+**17. Social Engineering (OSINT):**
+   - Explanation: Gather information about the target using online research and publicly available information.
+
+**18. Enumeration of Credentials (Hydra):**
+   - Command: `hydra -L users.txt -P passwords.txt <target> <service>`
+   - Explanation: Performs credential brute force attacks on services.
+
+Please note that these commands are for educational purposes, and you should always ensure you have proper authorization and follow ethical guidelines when using them.
